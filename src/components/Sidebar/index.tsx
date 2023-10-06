@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { BiHappyBeaming, BiHomeAlt } from 'react-icons/bi';
-import { FaMoneyCheckAlt } from 'react-icons/fa';
+import { FaChartBar, FaMoneyCheckAlt } from 'react-icons/fa';
 import { TbReportAnalytics } from 'react-icons/tb';
 import { MdExitToApp } from 'react-icons/md';
 
@@ -11,9 +11,9 @@ export default function SideBar() {
     <aside className="w-60 bg-slate-900 h-screen p-5 pt-8 relative duration-300 flex flex-col justify-between">
       <div>
         <div className="flex gap-x-4 items-center">
-          <BiHappyBeaming className="text-3xl text-white" />
+          <FaChartBar className="text-3xl text-white" />
           <h1
-            className={`text-white origin-left font-medium text-xl duration-200`}
+            className={`text-white origin-left font-semibold text-xl duration-200`}
           >
             Facillit
           </h1>
