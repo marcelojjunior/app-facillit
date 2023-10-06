@@ -2,6 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Outlet, Route } from 're
 import ProtectedRoutes from './ProtectedRoutes'
 
 import {
+    Login,
     Dashboard,
     Sales
 } from './routes'
@@ -10,8 +11,8 @@ import DefaultLayout from 'layouts/DefaultLayout'
 export const routes = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<Outlet />}>
-            {/* <Route index element={<Login />} />
-            <Route path='password/forget' element={<Forget />} />
+            <Route index element={<Login />} />
+            {/* <Route path='password/forget' element={<Forget />} />
             <Route path='password/reset' element={<Reset />} /> */}
 
             <Route element={<ProtectedRoutes />} >

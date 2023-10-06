@@ -1,6 +1,6 @@
 
 //Guest routes
-// export { default as Login } from '../pages/Auth/Login';
+export { default as Login } from '../pages/Auth/Login';
 
 
 //protected routes
