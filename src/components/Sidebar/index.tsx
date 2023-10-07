@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BiHappyBeaming, BiHomeAlt } from 'react-icons/bi';
+import { BiHomeAlt } from 'react-icons/bi';
 import { FaChartBar, FaMoneyCheckAlt } from 'react-icons/fa';
 import { TbReportAnalytics } from 'react-icons/tb';
 import { MdExitToApp } from 'react-icons/md';
