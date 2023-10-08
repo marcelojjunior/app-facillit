@@ -4,7 +4,7 @@ import ProtectedRoutes from './ProtectedRoutes'
 import {
     Login,
     Dashboard,
-    Sales
+    Sales,
 } from './routes'
 import DefaultLayout from 'layouts/DefaultLayout'
 
@@ -20,6 +20,7 @@ export const routes = createBrowserRouter(
                 <Route path="dashboard" element={<DefaultLayout />}>
                     <Route index element={<Dashboard />} />
                 </Route>
+
                 <Route path="sales" element={<DefaultLayout />}>
                     <Route index element={<Sales />} />
                 </Route>

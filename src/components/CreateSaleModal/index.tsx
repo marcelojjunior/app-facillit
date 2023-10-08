@@ -1,16 +1,12 @@
 import { useRef } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { AiOutlineClose } from "react-icons/ai";
-import { BiTrash } from 'react-icons/bi';
+import { BiPlusCircle } from 'react-icons/bi';
 import { MdOutlineCancel } from 'react-icons/md';
-
-interface DeleteModalProps {
-  title: string;
-  description: string;
-}
+import DateRangerPicker from '@components/DatePicker';
 
 
-export default function DeleteModal({ title, description }: DeleteModalProps) {
+export default function CreateSaleModal() {
   const closeButton = useRef<HTMLButtonElement>(null);
 
   return (
@@ -36,13 +32,15 @@ export default function DeleteModal({ title, description }: DeleteModalProps) {
           <h1
             className="text-xl font-bold text-slate-900"
           >
-            {title}
+            Título
           </h1>
-          <p
-            className="text-slate-800"
-          >
-            {description}
-          </p>
+          <DateRangerPicker 
+            typeDate="date"
+            dateSelected={null}
+            setDateSelected={() => {}}
+            setDateRangeSelected={() => {}}
+            dateRangeSelected={null}
+          />
           <div className='flex gap-2 justify-center mt-2'>
             <button
               onClick={() => closeButton.current?.click()}
@@ -52,10 +50,10 @@ export default function DeleteModal({ title, description }: DeleteModalProps) {
               Cancelar
             </button>
             <button
-              className='bg-red-600 text-white px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90'
+              className='bg-slate-900 text-white px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90'
             >
-              <BiTrash size={20} />
-              Deletar
+              <BiPlusCircle size={20} />
+              Criar
             </button>
           </div>
         </div>

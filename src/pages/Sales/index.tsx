@@ -2,6 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import Header from "@components/Header";
 import { BiEdit, BiPlusCircle, BiTrash } from "react-icons/bi";
 import DeleteModal from '@components/DeleteModal';
+import CreateSaleModal from '@components/CreateSaleModal';
 
 export default function Sales() {
     return (
@@ -14,10 +15,16 @@ export default function Sales() {
                         placeholder="Pesquisar..."
                         className="rounded-lg p-2 bg-slate-200 w-52"
                     />
-                    <button className="bg-slate-900 text-white px-5 py-[10px] shadow-md text-sm font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90">
-                        Nova Venda
-                        <BiPlusCircle size={20} />
-                    </button>
+                    <Dialog.Root>
+                        <Dialog.Trigger asChild>
+                            <button className="bg-slate-900 text-white px-5 py-[10px] shadow-md text-sm font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90">
+                                <BiPlusCircle size={20} />
+                                Nova Venda
+                            </button>
+                        </Dialog.Trigger>
+                        <CreateSaleModal />
+                    </Dialog.Root>
+
                 </div>
                 <div className="relative overflow-x-auto shadow-md rounded-lg">
                     <table className="w-full text-sm text-left text-gray-500">
@@ -70,7 +77,7 @@ export default function Sales() {
                                                 <BiTrash size={20} />
                                             </button>
                                         </Dialog.Trigger>
-                                        <DeleteModal />
+                                        <DeleteModal title='Deletar venda' description='Tem certeza que deseja deletar esta venda?' />
                                     </Dialog.Root>
                                 </td>
                             </tr>
@@ -100,7 +107,7 @@ export default function Sales() {
                                                 <BiTrash size={20} />
                                             </button>
                                         </Dialog.Trigger>
-                                        <DeleteModal />
+                                        <DeleteModal title='Deletar venda' description='Tem certeza que deseja deletar esta venda?' />
                                     </Dialog.Root>
                                 </td>
                             </tr>
