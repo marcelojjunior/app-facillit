@@ -1,63 +1,111 @@
-import { useRef } from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
-import { AiOutlineClose } from "react-icons/ai";
+import DateRangerPicker from '@components/DatePicker';
+import { useState } from 'react';
 import { BiPlusCircle } from 'react-icons/bi';
 import { MdOutlineCancel } from 'react-icons/md';
-import DateRangerPicker from '@components/DatePicker';
+import { Modal, SelectPicker, InputNumber } from 'rsuite';
 
+interface ModalContentProps {
+  open: boolean;
+  onClose: () => void;
+}
 
-export default function CreateSaleModal() {
-  const closeButton = useRef<HTMLButtonElement>(null);
+interface DateRange {
+  startDate: string;
+  endDate: string;
+}
+
+export default function CreateSaleModal({ open, onClose }: ModalContentProps) {
+  const [daySelected, setDaySelected] = useState<[Date, Date] | null>(null);
+  const [dayRangeSelected, setDayRangeSelected] = useState<DateRange | null>(null);
+
+  const selectModelCampaign = ['Normal', 'Promoção'].map(
+    item => ({ label: item, value: item })
+  );
+
+  const selectFormPayment = ['Dinheiro', 'PIX', 'Débito', 'Crédito', 'Crédito (2x)', 'Crédito (3x)', 'Crédito (4x)'].map(
+    item => ({ label: item, value: item })
+  );
 
   return (
-    <Dialog.Portal>
-      <Dialog.Overlay
-        style={{
-          position: 'fixed',
-          width: '100vw',
-          height: '100vh',
-          inset: 0,
-          background: 'rgba(0, 0, 0, 0.75)',
-          zIndex: '10',
-        }}
-      />
-      <Dialog.Content
-        forceMount
-        className={'z-40 w-96 rounded-lg p-4 top-1/2 left-1/2 fixed bg-white transform -translate-x-1/2 -translate-y-1/2'}
-      >
-        <Dialog.Close ref={closeButton} className={'absolute top-4 right-8'}>
-          <AiOutlineClose />
-        </Dialog.Close>
-        <div className="w-full flex flex-col gap-2 pt-4">
-          <h1
-            className="text-xl font-bold text-slate-900"
+    <Modal open={open} onClose={onClose}>
+      <Modal.Header>
+        <Modal.Title><p className='text-2xl font-bold'>Nova Venda</p></Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className='flex flex-col gap-3'>
+          <div
+            className='grid grid-cols-1'
           >
-            Título
-          </h1>
-          <DateRangerPicker 
-            typeDate="date"
-            dateSelected={null}
-            setDateSelected={() => {}}
-            setDateRangeSelected={() => {}}
-            dateRangeSelected={null}
-          />
-          <div className='flex gap-2 justify-center mt-2'>
-            <button
-              onClick={() => closeButton.current?.click()}
-              className='bg-white text-slate-800 px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg border border-slate-500'
-            >
-              <MdOutlineCancel size={20} />
-              Cancelar
-            </button>
-            <button
-              className='bg-slate-900 text-white px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90'
-            >
-              <BiPlusCircle size={20} />
-              Criar
-            </button>
+            <div className='flex flex-col ga-2'>
+              <label htmlFor="">Cliente</label>
+              <input
+                type="text"
+                name="client"
+                id="client"
+                className='rounded-lg p-2 border border-gray-300'
+              />
+            </div>
+          </div>
+          <div
+            className='grid grid-cols-2 gap-5'
+          >
+            <div className='flex flex-col ga-2'>
+              <label htmlFor="">Dia</label>
+              <DateRangerPicker
+                typeDate="date"
+                dateSelected={daySelected}
+                setDateSelected={setDaySelected}
+                setDateRangeSelected={setDayRangeSelected}
+                dateRangeSelected={dayRangeSelected}
+              />
+            </div>
+            <div className='flex flex-col ga-2'>
+              <label htmlFor="">Campanha</label>
+              <SelectPicker
+                data={selectModelCampaign}
+                searchable={false}
+                placeholder="Selecione uma campanha"
+              />
+            </div>
+          </div>
+          <div
+            className='grid grid-cols-2 gap-5'
+          >
+            <div className='flex flex-col ga-2'>
+              <label htmlFor="">Forma de Pagamento</label>
+              <SelectPicker
+                data={selectFormPayment}
+                searchable={false}
+                placeholder="Selecione uma forma de pagamento"
+              />
+            </div>
+            <div className='flex flex-col ga-2'>
+              <label htmlFor="">Valor</label>
+              <InputNumber
+                prefix="$"
+                min={0}
+              />
+            </div>
           </div>
         </div>
-      </Dialog.Content>
-    </Dialog.Portal>
+      </Modal.Body>
+      <Modal.Footer>
+        <div className='flex gap-2 justify-end'>
+          <button
+            onClick={onClose}
+            className='bg-white text-slate-800 px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg border border-slate-500'
+          >
+            <MdOutlineCancel size={20} />
+            Cancelar
+          </button>
+          <button
+            className='bg-slate-900 text-white px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90'
+          >
+            <BiPlusCircle size={20} />
+            Criar Venda
+          </button>
+        </div>
+      </Modal.Footer>
+    </Modal>
   );
 }

@@ -128,6 +128,7 @@ const DateRangerPicker: React.FC<DatePickerProps> = ({
       // color="#3F3524"
       placeholder="dd/mm/aaaa"
       style={{ zIndex: 9999 }}
+      
     />
   );
 };

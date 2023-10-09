@@ -1,10 +1,23 @@
 import * as Dialog from '@radix-ui/react-dialog';
+import { ButtonToolbar } from 'rsuite';
 import Header from "@components/Header";
 import { BiEdit, BiPlusCircle, BiTrash } from "react-icons/bi";
 import DeleteModal from '@components/DeleteModal';
 import CreateSaleModal from '@components/CreateSaleModal';
+import { useState } from 'react';
+
 
 export default function Sales() {
+    const [isModalCreateSaleOpen, setIsModalCreateSaleOpen] = useState(false);
+
+    const handleOpenCreateSaleModal = () => {
+        setIsModalCreateSaleOpen(true);
+    };
+
+    const handleCloseCreateSaleModal = () => {
+        setIsModalCreateSaleOpen(false);
+    };
+
     return (
         <>
             <main className="p-5">
@@ -15,16 +28,16 @@ export default function Sales() {
                         placeholder="Pesquisar..."
                         className="rounded-lg p-2 bg-slate-200 w-52"
                     />
-                    <Dialog.Root>
-                        <Dialog.Trigger asChild>
-                            <button className="bg-slate-900 text-white px-5 py-[10px] shadow-md text-sm font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90">
-                                <BiPlusCircle size={20} />
-                                Nova Venda
-                            </button>
-                        </Dialog.Trigger>
-                        <CreateSaleModal />
-                    </Dialog.Root>
-
+                    <ButtonToolbar>
+                        <button
+                            onClick={handleOpenCreateSaleModal}
+                            className="bg-slate-900 text-white px-5 py-[10px] shadow-md text-sm font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90"
+                        >
+                            <BiPlusCircle size={20} />
+                            Nova Venda
+                        </button>
+                    </ButtonToolbar>
+                    <CreateSaleModal open={isModalCreateSaleOpen} onClose={handleCloseCreateSaleModal} />
                 </div>
                 <div className="relative overflow-x-auto shadow-md rounded-lg">
                     <table className="w-full text-sm text-left text-gray-500">
