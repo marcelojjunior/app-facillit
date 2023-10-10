@@ -7,7 +7,7 @@ export default function DefaultLayout() {
     <div className="font-poppins w-full relative">
       <div className="flex w-full h-full">
         <SideBar />
-        <main className="w-full">
+        <main className="w-full ml-60">
           <Outlet />
         </main>
       </div>

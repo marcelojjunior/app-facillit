@@ -9,7 +9,7 @@ import { MdExitToApp } from 'react-icons/md';
 export default function SideBar() {
 
   return (
-    <div className='flex relative'>
+    <div className='flex fixed'>
 
 
       <aside className="w-60 bg-slate-900 h-screen p-5 pt-8 relative duration-300 hidden lg:flex flex-col justify-between">
