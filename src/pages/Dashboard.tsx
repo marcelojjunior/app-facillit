@@ -96,15 +96,13 @@ export default function Dashboard() {
             </div>
             <div className='w-full mb-12 grid gap-y-10 gap-x-6 md:grid-cols-1 xl:grid-cols-2'>
                 <div
-                    className='bg-white rounded-xl h-[350px] shadow-md p-4'
+                    className='bg-white rounded-xl shadow-md p-4 flex justify-center w-full'
                 >
-
                     <LineChart />
                 </div>
                 <div
-                    className='bg-white rounded-xl h-[350px] shadow-md p-4'
+                    className='bg-white rounded-xl shadow-md p-4 flex justify-center w-full'
                 >
-
                     <LineChart />
                 </div>
             </div>

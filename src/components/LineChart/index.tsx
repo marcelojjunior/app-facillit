@@ -57,5 +57,5 @@ export const data = {
 };
 
 export default function LineChart() {
-  return <Line style={{ height: '80%' }} options={options} data={data} />;
+  return <Line style={{ height: '80%'}} options={options} data={data} />;
 }
