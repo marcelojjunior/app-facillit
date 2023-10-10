@@ -5,6 +5,7 @@ import {
     Login,
     Dashboard,
     Sales,
+    Reports
 } from './routes'
 import DefaultLayout from 'layouts/DefaultLayout'
 
@@ -23,6 +24,10 @@ export const routes = createBrowserRouter(
 
                 <Route path="sales" element={<DefaultLayout />}>
                     <Route index element={<Sales />} />
+                </Route>
+
+                <Route path="reports" element={<DefaultLayout />}>
+                    <Route index element={<Reports />} />
                 </Route>
             </Route>
 

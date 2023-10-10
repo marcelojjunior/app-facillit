@@ -42,7 +42,7 @@ export default function SideBar() {
               </span>
             </Link>
             <Link
-              to={''}
+              to={'/reports'}
               className={`flex rounded-md p-2 cursor-pointer hover:bg-slate-950 text-gray-300 text-sm items-center gap-x-4 mt-2 `}
             >
               <TbReportAnalytics className="text-2xl" />
