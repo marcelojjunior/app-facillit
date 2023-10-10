@@ -1,65 +1,46 @@
-import { useRef } from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
-import { AiOutlineClose } from "react-icons/ai";
-import { BiTrash } from 'react-icons/bi';
+import { BiPlusCircle } from 'react-icons/bi';
 import { MdOutlineCancel } from 'react-icons/md';
+import { Modal } from 'rsuite';
 
-interface DeleteModalProps {
+interface ModalContentProps {
+  open: boolean;
+  onClose: () => void;
   title: string;
   description: string;
 }
 
 
-export default function DeleteModal({ title, description }: DeleteModalProps) {
-  const closeButton = useRef<HTMLButtonElement>(null);
+export default function DeleteModal({ open, onClose, title, description }: ModalContentProps) {
 
   return (
-    <Dialog.Portal>
-      <Dialog.Overlay
-        style={{
-          position: 'fixed',
-          width: '100vw',
-          height: '100vh',
-          inset: 0,
-          background: 'rgba(0, 0, 0, 0.75)',
-          zIndex: '10',
-        }}
-      />
-      <Dialog.Content
-        forceMount
-        className={'z-40 w-96 rounded-lg p-4 top-1/2 left-1/2 fixed bg-white transform -translate-x-1/2 -translate-y-1/2'}
-      >
-        <Dialog.Close ref={closeButton} className={'absolute top-4 right-8'}>
-          <AiOutlineClose />
-        </Dialog.Close>
-        <div className="w-full flex flex-col gap-2 pt-4">
-          <h1
-            className="text-xl font-bold text-slate-900"
-          >
-            {title}
-          </h1>
-          <p
-            className="text-slate-800"
-          >
+    <Modal open={open} onClose={onClose} size='xs'>
+      <Modal.Header>
+        <Modal.Title><p className='text-2xl font-bold'>{title}</p></Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className='flex flex-col gap-3'>
+          <p>
             {description}
           </p>
-          <div className='flex gap-2 justify-center mt-2'>
-            <button
-              onClick={() => closeButton.current?.click()}
-              className='bg-white text-slate-800 px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg border border-slate-500'
-            >
-              <MdOutlineCancel size={20} />
-              Cancelar
-            </button>
-            <button
-              className='bg-red-600 text-white px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90'
-            >
-              <BiTrash size={20} />
-              Deletar
-            </button>
-          </div>
         </div>
-      </Dialog.Content>
-    </Dialog.Portal>
+      </Modal.Body>
+      <Modal.Footer>
+        <div className='flex gap-2 justify-end'>
+          <button
+            onClick={onClose}
+            className='bg-white text-slate-800 px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg border border-slate-500'
+          >
+            <MdOutlineCancel size={20} />
+            Cancelar
+          </button>
+          <button
+            className='bg-red-500 text-white px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90'
+          >
+            <BiPlusCircle size={20} />
+            Apagar Venda
+          </button>
+        </div>
+      </Modal.Footer>
+    </Modal>
   );
 }

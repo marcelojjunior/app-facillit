@@ -1,22 +1,40 @@
-import * as Dialog from '@radix-ui/react-dialog';
 import { ButtonToolbar } from 'rsuite';
 import Header from "@components/Header";
 import { BiEdit, BiPlusCircle, BiTrash } from "react-icons/bi";
 import DeleteModal from '@components/DeleteModal';
 import CreateSaleModal from '@components/CreateSaleModal';
 import { useState } from 'react';
+import EditSaleModal from '@components/CreateSaleModal/EditSaleModal';
 
 
 export default function Sales() {
     const [isModalCreateSaleOpen, setIsModalCreateSaleOpen] = useState(false);
+    const [isModalEditSaleOpen, setIsModalEditSaleOpen] = useState(false);
+    const [isModalDeleteSaleOpen, setIsModalDeleteSaleOpen] = useState(false);
 
     const handleOpenCreateSaleModal = () => {
         setIsModalCreateSaleOpen(true);
     };
 
+    const handleOpenDeleteSaleModal = () => {
+        setIsModalDeleteSaleOpen(true);
+    }
+
+    const handleOpenEditSaleModal = () => {
+        setIsModalEditSaleOpen(true);
+    }
+
     const handleCloseCreateSaleModal = () => {
         setIsModalCreateSaleOpen(false);
     };
+
+    const handleCloseDeleteSaleModal = () => {
+        setIsModalDeleteSaleOpen(false);
+    }
+
+    const handleCloseEditSaleModal = () => {
+        setIsModalEditSaleOpen(false);
+    }
 
     return (
         <>
@@ -81,17 +99,26 @@ export default function Sales() {
                                     R$ 120,00
                                 </td>
                                 <td className="px-6 py-4 flex gap-2">
-                                    <button className="hover:text-slate-900">
-                                        <BiEdit size={20} />
-                                    </button>
-                                    <Dialog.Root>
-                                        <Dialog.Trigger asChild>
-                                            <button className="hover:text-red-500">
-                                                <BiTrash size={20} />
-                                            </button>
-                                        </Dialog.Trigger>
-                                        <DeleteModal title='Deletar venda' description='Tem certeza que deseja deletar esta venda?' />
-                                    </Dialog.Root>
+                                    <ButtonToolbar>
+                                        <button
+                                            onClick={handleOpenEditSaleModal}
+                                            className="hover:text-slate-900"
+                                        >
+                                            <BiEdit size={20} />
+                                        </button>
+                                    </ButtonToolbar>
+                                    <EditSaleModal open={isModalEditSaleOpen} onClose={handleCloseEditSaleModal} />
+                                    <ButtonToolbar>
+                                        <button className="hover:text-red-500" onClick={handleOpenDeleteSaleModal}>
+                                            <BiTrash size={20} />
+                                        </button>
+                                    </ButtonToolbar>
+                                    <DeleteModal
+                                        open={isModalDeleteSaleOpen}
+                                        onClose={handleCloseDeleteSaleModal}
+                                        title='Deletar venda'
+                                        description='Tem certeza que deseja deletar esta venda?'
+                                    />
                                 </td>
                             </tr>
                             <tr className="border-b bg-slate-100">
@@ -114,14 +141,9 @@ export default function Sales() {
                                     <button className="hover:text-slate-900">
                                         <BiEdit size={20} />
                                     </button>
-                                    <Dialog.Root>
-                                        <Dialog.Trigger asChild>
-                                            <button className="hover:text-red-500">
-                                                <BiTrash size={20} />
-                                            </button>
-                                        </Dialog.Trigger>
-                                        <DeleteModal title='Deletar venda' description='Tem certeza que deseja deletar esta venda?' />
-                                    </Dialog.Root>
+                                    <button className="hover:text-red-500" onClick={handleOpenDeleteSaleModal}>
+                                        <BiTrash size={20} />
+                                    </button>
                                 </td>
                             </tr>
 

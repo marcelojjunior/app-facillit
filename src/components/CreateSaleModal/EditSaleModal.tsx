@@ -1,6 +1,6 @@
 import DateRangerPicker from '@components/DatePicker';
 import { useState } from 'react';
-import { BiPlusCircle } from 'react-icons/bi';
+import { GoCheckCircle } from 'react-icons/go';
 import { MdOutlineCancel } from 'react-icons/md';
 import { Modal, SelectPicker, InputNumber } from 'rsuite';
 
@@ -14,7 +14,7 @@ interface DateRange {
   endDate: string;
 }
 
-export default function CreateSaleModal({ open, onClose }: ModalContentProps) {
+export default function EditSaleModal({ open, onClose }: ModalContentProps) {
   const [daySelected, setDaySelected] = useState<[Date, Date] | null>(null);
   const [dayRangeSelected, setDayRangeSelected] = useState<DateRange | null>(null);
 
@@ -29,7 +29,7 @@ export default function CreateSaleModal({ open, onClose }: ModalContentProps) {
   return (
     <Modal open={open} onClose={onClose}>
       <Modal.Header>
-        <Modal.Title><p className='text-2xl font-bold'>Nova Venda</p></Modal.Title>
+        <Modal.Title><p className='text-2xl font-bold'>Editar Venda</p></Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className='flex flex-col gap-3'>
@@ -104,8 +104,8 @@ export default function CreateSaleModal({ open, onClose }: ModalContentProps) {
           <button
             className='bg-slate-900 text-white px-3 py-[7px] shadow-md text-xs font-semibold flex items-center justify-center gap-2 rounded-lg hover:opacity-90'
           >
-            <BiPlusCircle size={20} />
-            Criar Venda
+            <GoCheckCircle size={20} />
+            Salvar Venda
           </button>
         </div>
       </Modal.Footer>
